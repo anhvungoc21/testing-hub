@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Layout from "../components/Layout";
-import Footer2 from "../components/Footer2";
+import Footer from "../components/Footer";
 
 const Agency = () => {
   return (
@@ -71,7 +71,7 @@ const Agency = () => {
         </p>
 
         <hr></hr>
-        <Footer2 />
+        <Footer />
       </Layout>
     </div>
   );

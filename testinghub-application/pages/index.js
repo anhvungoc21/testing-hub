@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Header from "../components/Header";
-import Footer2 from "../components/Footer2";
+import Footer from "../components/Footer";
 
 const Index = () => {
   return (
@@ -69,7 +69,7 @@ const Index = () => {
 
         <hr></hr>
 
-        <Footer2 />
+        <Footer />
       </Layout>
     </div>
   );
