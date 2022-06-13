@@ -22,8 +22,9 @@ export default function Center() {
         <div className="text-[#232426] text-center">
           <h1 className="text-7xl">Testing Hub</h1>
         </div>
-        <img onClick={signOut} className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full" src={ session?.user.image } />
       </section> */}
+      <img onClick={signOut} className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full" src={ session?.user.image } />
+
       <div className={"bg-[#FFFFF5]"}>
         <SearchBox
           className={"bg-gray-50"}
