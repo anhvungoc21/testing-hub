@@ -39,7 +39,7 @@ const Index = () => {
           <h2>
             <strong>TestingHub. </strong>
           </h2>
-          <h4 c>
+          <h4>
             It's your one stop shop for A/B tests. Routine checks put on
             autopilot, giving your more time to take your email to the next
             level.
