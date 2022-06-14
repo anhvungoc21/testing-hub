@@ -1,9 +1,9 @@
-/* import Header from "../components/Header";
+import Header from "../components/Header";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 export default function Account() {
-  const { data: session } = useSession();
+  /* const { data: session } = useSession();
   const [message, setMessage] = useState(null);
   const [apiKeyName, setApiKeyName] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -62,6 +62,5 @@ export default function Account() {
         </div>
       </main>
     </div>
-  );
+  ); */
 }
- */
