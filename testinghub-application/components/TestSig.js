@@ -128,7 +128,10 @@ export default function TestSig({
         key={item.message_id}
         className="content-center text-center h-30 w-52 bg-[#72A4C4] rounded"
       >
-        Flow ID: {item.flow_id}
+        Flow ID:{" "}
+        <a href={`https://www.klaviyo.com/flow/${item.flow_id}/edit`}>
+          {item.flow_id}
+        </a>
         <br />
         Message Name: {item.message_name}
         <br />
