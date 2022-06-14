@@ -65,11 +65,12 @@ const Header = () => {
                   Account/Testing
                 </NavLink>
               </NavItem>
-              <NavItem>
+
+              {/* <NavItem>
                 <NavLink className="navLink" href="/account">
                   My Account
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Container>

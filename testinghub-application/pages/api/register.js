@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+/* import bcrypt from "bcrypt";
 import Users from "../../models/UserModel";
 
 export default async function handler(req, res) {
@@ -15,3 +15,4 @@ export default async function handler(req, res) {
   await user.save();
   res.status(200).json({ message: "Registered successfully" });
 }
+ */
