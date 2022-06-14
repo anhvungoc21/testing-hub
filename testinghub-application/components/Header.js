@@ -42,31 +42,32 @@ const Header = () => {
               <NavbarBrand className="logo" href="/">
                 Testing Hub
               </NavbarBrand>
-
               <NavItem>
                 <NavLink className="navLink" href="/">
                   Home
                 </NavLink>
               </NavItem>
-
               <NavItem>
                 <NavLink className="navLink" href="/agency">
                   For Agencies
                 </NavLink>
               </NavItem>
-
               <NavItem>
                 <NavLink className="navLink" href="/brand">
                   For Brands
                 </NavLink>
               </NavItem>
-
               <NavItem>
                 <NavLink
                   className="navLink"
                   href={session ? "/testing" : "/login"}
                 >
                   Account/Testing
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="navLink" href="/account">
+                  My Account
                 </NavLink>
               </NavItem>
             </Nav>
