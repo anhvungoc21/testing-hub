@@ -23,7 +23,7 @@ export default function Center() {
           <h1 className="text-7xl">Testing Hub</h1>
         </div>
       </section> */}
-      <img onClick={signOut} className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full" src={ session?.user.image } />
+      <btn onClick={signOut} className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full" src={ session?.user.image }>Sign Out</btn>
 
       <div className={"bg-[#FFFFF5]"}>
         <SearchBox
