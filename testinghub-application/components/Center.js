@@ -14,11 +14,13 @@ export default function Center() {
 
   return (
     <div className="w-screen h-screen overflow-y-scroll scrollbar-hide">
-      <img
+      <btn
         onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
         className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full"
         src={session?.user.image}
-      />
+      >
+        Sign Out
+      </btn>
       <div className={"bg-[#FFFFF5]"}>
         <SearchBox
           className={"bg-gray-50"}

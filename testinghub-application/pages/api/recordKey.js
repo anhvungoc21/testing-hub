@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../../lib/mongodb";
+/* import { connectToDatabase } from "../../lib/mongodb";
 import Users from "../../models/UserModel";
 
 export default async function handler(req, res) {
@@ -25,4 +25,4 @@ export default async function handler(req, res) {
     // Send success response
     return res.status(200).json({ message: "API key added" });
   }
-}
+} */
