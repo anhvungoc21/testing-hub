@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   Container,
   Collapse,
@@ -10,8 +9,10 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const [sticky, setSticky] = useState(false);
@@ -41,28 +42,32 @@ const Header = () => {
               <NavbarBrand className="logo" href="/">
                 Testing Hub
               </NavbarBrand>
-
               <NavItem>
                 <NavLink className="navLink" href="/">
                   Home
                 </NavLink>
               </NavItem>
-
               <NavItem>
                 <NavLink className="navLink" href="/agency">
                   For Agencies
                 </NavLink>
               </NavItem>
-
               <NavItem>
                 <NavLink className="navLink" href="/brand">
                   For Brands
                 </NavLink>
               </NavItem>
-
               <NavItem>
-                <NavLink className="navLink" href="/testing">
+                <NavLink
+                  className="navLink"
+                  href={session ? "/testing" : "/login"}
+                >
                   Account/Testing
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="navLink" href="/account">
+                  My Account
                 </NavLink>
               </NavItem>
             </Nav>

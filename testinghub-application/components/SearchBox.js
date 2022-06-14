@@ -20,7 +20,7 @@ export default function SearchBox({
   };
 
   useEffect(() => {
-    fetch("/api/signup/getKeys" + `?email=${session.user.email}`)
+    fetch("/api/signup/getKeys" + `?email=${session?.user.email}`)
       .then((res) => res.json())
       .then((json) => {
         setApiKeys(json.data);
