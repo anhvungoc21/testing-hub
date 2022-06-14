@@ -50,7 +50,7 @@ export default function Login({ providers, csrfToken }) {
     if (data.message == "Registered successfully") {
       let options = { redirect: false, email, password };
       const res = signIn("credentials", options);
-      return Router.push("/");
+      return Router.push("/testing");
     }
   };
 
@@ -76,7 +76,7 @@ export default function Login({ providers, csrfToken }) {
             <label>
               Password:
               <input
-                type="email"
+                type="password"
                 name="password"
                 id="password"
                 value={password}
@@ -85,11 +85,20 @@ export default function Login({ providers, csrfToken }) {
             </label>
             <p style={{ color: "red" }}>{message}</p>
             <br />
-            <button type="submit" onClick={(e) => signInUser(e)}>
+            <button
+              type="submit"
+              onClick={(e) => signInUser(e)}
+              className="bg-[#3a7fed] text-white p-1 rounded"
+            >
               Sign in with Credentials
             </button>
             <br />
-            <button onClick={(e) => signUpUser(e)}>Sign up</button>
+            <button
+              onClick={(e) => signUpUser(e)}
+              className="bg-[#3a7fed] text-white p-1 rounded"
+            >
+              Sign up
+            </button>
           </form>
           {Object.values(providers).map((provider) => {
             if (provider.name == "credentials") {
@@ -113,12 +122,12 @@ export default function Login({ providers, csrfToken }) {
 }
 
 export async function getServerSideProps({ req, context }) {
-  const session = await getSession({ req });
+  /* const session = await getSession({ req });
   if (session) {
     return {
       redirect: { destination: "/" },
     };
-  }
+  } */
   const csrfToken = await getCsrfToken(context);
   const providers = await getProviders();
   return {

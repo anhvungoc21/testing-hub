@@ -1,9 +1,7 @@
 import SearchBox from "../components/SearchBox.js";
 import TestSig from "./TestSig.js";
-import React from "react";
-import { useState, useEffect } from "react";
-import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import React, { useState, useEffect } from "react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Center() {
   const [apiState, setApiState] = useState("");
@@ -17,7 +15,7 @@ export default function Center() {
   return (
     <div className="w-screen h-screen overflow-y-scroll scrollbar-hide">
       <img
-        onClick={signOut}
+        onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
         className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full"
         src={session?.user.image}
       />

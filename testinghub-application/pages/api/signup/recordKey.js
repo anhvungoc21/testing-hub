@@ -1,15 +1,11 @@
 import { connectToDatabase } from "../../../lib/mongodb";
+import Users from "../../../models/UserModel";
 
 export default async function handler(req, res) {
   if (req.method == "POST") {
-    const { db } = await connectToDatabase();
-    const users = db.collection("users");
-
-    // Insert database queries here
     const { email, apiKey } = req.body;
-    // console.log(email, apiKey);
 
-    const checkExisting = await users.findOne({
+    const checkExisting = await Users.findOne({
       apiKeys: { $in: [apiKey] },
       email: { $in: [email] },
     });
@@ -19,7 +15,7 @@ export default async function handler(req, res) {
       return res.status(422).json({ message: "API key already existed" });
     }
 
-    users.updateOne({ email: email }, { $push: { apiKeys: apiKey } });
+    Users.updateOne({ email: email }, { $push: { apiKeys: apiKey } });
     // Send success response
     return res.status(201).json({ message: "API key added" });
   }
