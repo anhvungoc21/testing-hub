@@ -19,6 +19,8 @@ const Header = () => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  let accountTab;
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   });
@@ -30,6 +32,16 @@ const Header = () => {
       setSticky(false);
     }
   };
+
+  if (session) {
+    accountTab = (
+      <NavItem>
+        <NavLink className="navLink" href="/account">
+          My Account
+        </NavLink>
+      </NavItem>
+    );
+  }
 
   return (
     <div className={`header${sticky ? " sticky" : ""}`}>
@@ -65,12 +77,7 @@ const Header = () => {
                   Account/Testing
                 </NavLink>
               </NavItem>
-
-              <NavItem>
-                <NavLink className="navLink" href="/account">
-                  My Account
-                </NavLink>
-              </NavItem>
+              {accountTab}
             </Nav>
           </Collapse>
         </Container>

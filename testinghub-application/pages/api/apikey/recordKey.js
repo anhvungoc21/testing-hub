@@ -1,5 +1,4 @@
-import { connectToDatabase } from "../../lib/mongodb";
-import Users from "../../models/UserModel";
+import Users from "../../../models/UserModel";
 
 export default async function handler(req, res) {
   if (req.method == "POST") {

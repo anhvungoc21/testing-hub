@@ -20,12 +20,26 @@ export default function SearchBox({
   };
 
   useEffect(() => {
-    fetch("/api/signup/getKeys" + `?email=${session?.user.email}`)
+    (async () => {
+      const res = await fetch("/api/apikey/getKeys", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: session?.user.email }),
+      });
+
+      const json = await res.json();
+      setApiKeys(json.data);
+      console.log(apiKeys);
+    })();
+
+    /* fetch("/api/signup/getKeys" + `?email=${session?.user.email}`)
       .then((res) => res.json())
       .then((json) => {
         setApiKeys(json.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); */
   }, []);
 
   return (
@@ -47,6 +61,20 @@ export default function SearchBox({
             </option>{" "}
             {/* 1 is the metric for Opened Email*/}
           </select>
+          <select
+            id="apiKeys"
+            className="bg-[#FFFFF5] border-[#232426] hover:bg-[#232426] hover:border-transparent hover:text-white border-2 border-opacity-50 rounded-lg text-sm px-2 py-2 text-center inline-flex items-center"
+            onChange={(e) => setApiState(e.target.value)}
+          >
+            <option key="empty" value="">
+              No API key selected
+            </option>
+            {apiKeys.map((apiKey, i) => (
+              <option key={i} value={apiKey.apiKey}>
+                {apiKey.name}
+              </option>
+            ))}
+          </select>
           <input
             className="bg-[#FFFFF5] border-[#232426] border-opacity-50 border-2 rounded mx-2 w-80 px-3 py-2 font-normal text-gray-700 text-left"
             placeholder="Type Your API Key"
@@ -54,11 +82,6 @@ export default function SearchBox({
             onChange={(e) => setFormState(e.target.value)}
             value={formState}
           />
-          <datalist id="apiKeys">
-            {apiKeys.map((apiKey, i) => (
-              <option key={i} value={apiKey}></option>
-            ))}
-          </datalist>
           <select
             className="bg-[#FFFFF5] border-[#232426] hover:bg-[#232426] hover:border-transparent hover:text-white border-2 border-opacity-50 rounded-lg text-sm px-2 py-2 text-center inline-flex items-center"
             onChange={(e) => setDateDropDownState(e.target.value)}

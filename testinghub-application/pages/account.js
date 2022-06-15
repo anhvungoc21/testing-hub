@@ -10,7 +10,7 @@ export default function Account() {
   const saveApiKey = async (e) => {
     e.preventDefault();
     setMessage(null);
-    const res = await fetch("/api/recordKey", {
+    const res = await fetch("/api/apikey/recordKey", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
