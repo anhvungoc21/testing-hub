@@ -7,8 +7,12 @@ export default async function handler(req, res) {
     const user = await Users.findOne({ email });
     // console.log("User " + user);
     // Send error response if duplicate user is found
-    const apiKeysArr = user.apiKeys;
+    const apiKeysArr = user?.apiKeys;
     console.log(apiKeysArr);
+
+    if (!apiKeysArr) {
+      return res.status(200).json();
+    }
 
     if (user.apiKeyLimit <= apiKeysArr.length) {
       return res
