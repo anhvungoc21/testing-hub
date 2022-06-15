@@ -10,7 +10,8 @@ const userSchema = new Schema(
     email: { type: String, required: true },
     password: { type: String, required: true },
     apiKeys: {
-      type: [apiKeyLabel],
+      type: [{ name: String, apiKey: String }],
+      default: [],
     },
     apiKeyLimit: { type: Number, default: 2 },
   },

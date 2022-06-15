@@ -68,22 +68,27 @@ export default function TestSig({
         setDataReceivedLocal(true);
         setOkStatusState("Data loaded from last session!");
       } else {
-        setOkStatusState("");
         // Subsequent Renders
-        fetch("/api/tests/fakeTestRun" + `?apiKey=${apiKey}`)
-          .then((res) => {
-            console.log(res);
-            if (!res.ok) {
-              setTestRunning(false);
-              if (apiKey === "") return;
-              setOkStatusState("Please try again!");
-            } else {
-              updateKeyInDB(session.user.email, apiKey);
-              setTestRunning(true);
-              setOkStatusState("Fetching data & Running tests...");
-            }
-          })
-          .catch((err) => console.log(err));
+        setOkStatusState("");
+        (async () => {
+          const res = await fetch("/api/tests/fakeTestRun", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ apiKey }),
+          });
+          console.log(res);
+          if (!res.ok) {
+            setTestRunning(false);
+            if (apiKey === "") return;
+            setOkStatusState("Please try again!");
+          } else {
+            updateKeyInDB(session.user.email, apiKey);
+            setTestRunning(true);
+            setOkStatusState("Fetching data & Running tests...");
+          }
+        })();
         setTestSignificant([]);
         setTestInsignificant([]);
         setTestBuilding([]);
@@ -95,22 +100,23 @@ export default function TestSig({
 
   useEffect(() => {
     if (!testRunning) return;
-    fetch(
-      "/api/tests" + `?apikey=${apiKey}&metric=${metric}&daysAgo=${daysAgo}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setTestSignificant(json.data[0]);
-        setTestInsignificant(json.data[1]);
-        setTestBuilding(json.data[2]);
-      })
-      .then(() => {
-        setTestRunning(false);
-        setDataReceived(true);
-        setOkStatusState("Data Retrieved!");
-      })
-      .catch((err) => console.log(err));
+    (async () => {
+      const res = await fetch("/api/tests", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ apiKey, metric, daysAgo }),
+      });
+      const json = await res.json();
+      console.log(json);
+      setTestSignificant(json.data[0]);
+      setTestInsignificant(json.data[1]);
+      setTestBuilding(json.data[2]);
+      setTestRunning(false);
+      setDataReceived(true);
+      setOkStatusState("Data Retrieved!");
+    })();
   }, [testRunning]);
 
   /// BUILD CARDS

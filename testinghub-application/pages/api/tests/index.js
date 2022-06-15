@@ -1,9 +1,9 @@
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   const testArray = [];
 
-  const privateApiKey = req.query.apikey;
-  const metric = req.query.metric;
-  const daysAgo = req.query.daysAgo;
+  const privateApiKey = req.body.apiKey;
+  const metric = req.body.metric;
+  const daysAgo = req.body.daysAgo;
   // let divisor = 0.5;
 
   async function get_metrics_ID(api_key) {
@@ -601,4 +601,4 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
