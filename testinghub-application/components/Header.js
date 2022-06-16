@@ -52,7 +52,9 @@ const Header = () => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="m-auto" navbar>
               <NavbarBrand className="logo" href="/">
-                Testing Hub
+                <h1>
+                  <strong>Testing Hub</strong>
+                </h1>
               </NavbarBrand>
               <NavItem>
                 <NavLink className="navLink" href="/">
