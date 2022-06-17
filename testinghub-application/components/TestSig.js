@@ -85,7 +85,6 @@ export default function TestSig({
             if (apiKey === "") return;
             setOkStatusState("Please try again!");
           } else {
-            updateKeyInDB(session.user.email, apiKey);
             setTestRunning(true);
             setOkStatusState("Fetching data & Running tests...");
           }
@@ -220,20 +219,3 @@ export default function TestSig({
     </div>
   );
 }
-
-const updateKeyInDB = (email, apiKey) => {
-  const dev = process.env.NODE_ENV == "development";
-  const url = dev
-    ? "http://localhost:3000"
-    : "https://testing-hub-local.vercel.app";
-  fetch(url + "/api/signup/recordKey", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-      apiKey: apiKey,
-    }),
-  });
-};

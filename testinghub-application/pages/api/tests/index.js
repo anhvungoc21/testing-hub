@@ -600,5 +600,6 @@ export default async function handler(req, res) {
       .json(await get_tests(privateApiKey, metric, +daysAgo));
   } catch (error) {
     console.log(error);
+    throw error;
   }
 }

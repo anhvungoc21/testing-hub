@@ -31,7 +31,6 @@ export default function SearchBox({
 
       const json = await res.json();
       setApiKeys(json.data);
-      console.log(apiKeys);
     })();
   }, []);
 
