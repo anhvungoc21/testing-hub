@@ -1,0 +1,6 @@
+.standardButton {
+    background-color: #62C38C;
+}
+:hover .standardButton {
+    background-color: #5CE6E1;
+}

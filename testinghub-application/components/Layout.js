@@ -1,15 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Head from 'next/head';
+import Head from "next/head";
 
 const Layout = (props) => {
-
   return (
-
     <div>
-
       <Head>
-
         <title>{props.pageTitle}</title>
 
         <meta charSet="UTF-8" />
@@ -19,25 +15,14 @@ const Layout = (props) => {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
 
         <link
-
           rel="stylesheet"
-
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-
         />
-
       </Head>
 
-      <div>
-
-        {props.children}
-
-      </div>
-
+      <div>{props.children}</div>
     </div>
-
-  )
-
-}
+  );
+};
 
 export default Layout;
