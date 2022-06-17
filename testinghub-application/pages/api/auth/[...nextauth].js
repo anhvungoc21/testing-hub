@@ -69,9 +69,9 @@ export default NextAuth({
     // ...add more providers here
   ],
   secret: process.env.JWT_SECRET,
-  /* pages: {
-    signIn: "login",
-  }, */
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     /* async jwt({ token, account, user }) {
       // initial sign in
@@ -97,12 +97,7 @@ export default NextAuth({
     }, */
 
     async session({ session, token }) {
-      session.user.accessToken = token.accessToken;
-      session.user.name = token.name;
-      session.user.image = token.image;
-      session.user.email = token.email;
-      session.user.refreshToken = token.refreshToken;
-      session.user.username = token.username;
+      session.user = token;
 
       return session;
     },

@@ -3,20 +3,20 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 export default function SearchBox({
-  apiKey,
   setApiState,
   setDateDropDownState,
   setMetricDropDownState,
+  runTest,
+  setRunTest,
   okStatusState,
 }) {
-  const [formState, setFormState] = useState("");
+  // const [formState, setFormState] = useState("");
   const [apiKeys, setApiKeys] = useState([]);
   const { data: session } = useSession();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setApiState(formState);
-    setFormState("");
+    setRunTest(!runTest);
   };
 
   useEffect(() => {
@@ -33,13 +33,6 @@ export default function SearchBox({
       setApiKeys(json.data);
       console.log(apiKeys);
     })();
-
-    /* fetch("/api/signup/getKeys" + `?email=${session?.user.email}`)
-      .then((res) => res.json())
-      .then((json) => {
-        setApiKeys(json.data);
-      })
-      .catch((err) => console.log(err)); */
   }, []);
 
   return (
@@ -75,13 +68,13 @@ export default function SearchBox({
               </option>
             ))}
           </select>
-          <input
+          {/* <input
             className="bg-[#FFFFF5] border-[#232426] border-opacity-50 border-2 rounded mx-2 w-80 px-3 py-2 font-normal text-gray-700 text-left"
             placeholder="Type Your API Key"
             list="apiKeys"
             onChange={(e) => setFormState(e.target.value)}
             value={formState}
-          />
+          /> */}
           <select
             className="bg-[#FFFFF5] border-[#232426] hover:bg-[#232426] hover:border-transparent hover:text-white border-2 border-opacity-50 rounded-lg text-sm px-2 py-2 text-center inline-flex items-center"
             onChange={(e) => setDateDropDownState(e.target.value)}
@@ -106,7 +99,7 @@ export default function SearchBox({
             </option>{" "}
           </select>
           <button className="ml-4 font-bold py-2 px-6 border-2 border-opacity-50 border-[#232426] hover:bg-[#232426] hover:border-transparent hover:text-white rounded-lg">
-            Submit API
+            Analyze Tests
           </button>
         </form>
         <div className="flex">

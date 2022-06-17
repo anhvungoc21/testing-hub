@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 
 export default function Center() {
   const [apiState, setApiState] = useState("");
+  const [runTest, setRunTest] = useState(false);
   const [metricDropDownState, setMetricDropDownState] = useState(0);
   const [dateDropDownState, setDateDropDownState] = useState(1);
   const [okStatusState, setOkStatusState] = useState("");
@@ -24,16 +25,18 @@ export default function Center() {
       <div className={"bg-[#FFFFF5]"}>
         <SearchBox
           className={"bg-gray-50"}
-          apiKey={apiState}
           setApiState={setApiState}
           setDateDropDownState={setDateDropDownState}
           setMetricDropDownState={setMetricDropDownState}
+          runTest={runTest}
+          setRunTest={setRunTest}
           okStatusState={okStatusState}
         />
         <TestSig
           apiKey={apiState}
           metric={metricDropDownState}
           daysAgo={dateDropDownState}
+          runTest={runTest}
           setApiState={setApiState}
           okStatusState={okStatusState}
           setOkStatusState={setOkStatusState}

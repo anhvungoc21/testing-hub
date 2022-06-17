@@ -3,6 +3,7 @@ import Users from "../../../models/UserModel";
 
 export default async function handler(req, res) {
   const email = req.body.email;
+  console.log("Email: " + email);
   const user = await Users.findOne({ email });
   const apiKeysDBArr = user?.apiKeys;
 
@@ -15,6 +16,9 @@ export default async function handler(req, res) {
       apiKeysArr.push(apiKeyLabelObj);
     }
   }
+  console.log("Api keys: " + apiKeysArr);
   // console.log(apiKeysArr);
-  return res.status(200).json({ data: apiKeysArr });
+  return res
+    .status(200)
+    .json({ data: apiKeysArr, apiKeyLimit: user?.apiKeyLimit });
 }

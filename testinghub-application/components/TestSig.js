@@ -5,6 +5,7 @@ export default function TestSig({
   apiKey,
   metric,
   daysAgo,
+  runTest,
   setApiState,
   okStatusState,
   setOkStatusState,
@@ -95,7 +96,7 @@ export default function TestSig({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [apiKey, metric, daysAgo]
+    [runTest]
   );
 
   useEffect(() => {
