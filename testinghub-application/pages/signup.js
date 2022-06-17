@@ -1,35 +1,21 @@
-import { useState } from "react";
-import {
-  getProviders,
-  signIn,
-  getCsrfToken,
-  getSession,
-} from "next-auth/react";
-import Router from "next/router";
+import { getCsrfToken } from "next-auth/react";
 import Header from "../components/Header";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 
-export default function Login({ providers, csrfToken }) {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
+export default function Signup({ csrfToken }) {
   const [message, setMessage] = useState(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signInUser = async (e) => {
+  const signUpUser = async (e) => {
     e.preventDefault();
-    let options = { redirect: false, email, password };
-    const res = await signIn("credentials", options);
-    console.log(res);
-    setMessage(null);
-    if (res?.error) {
-      setMessage(res.error);
-    } else {
-      return Router.push("/testing");
+    if (!(firstName && lastName && email && password)) {
+      setMessage("Please fill out all fields!");
+      return;
     }
-  };
-
-  /* const signUpUser = async (e) => {
-    e.preventDefault();
     setMessage(null);
     const res = await fetch("/api/register", {
       method: "POST",
@@ -52,16 +38,37 @@ export default function Login({ providers, csrfToken }) {
       const res = signIn("credentials", options);
       return Router.push("/testing");
     }
-  }; */
+  };
 
   return (
     <div className="h-screen overflow-hidden">
       <Header />
       <main className="flex">
         <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
-          <h1 className="">Testing Hub</h1>
           <form method="post">
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+            <label>
+              First Name
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Last Name
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </label>
+            <br />
             <label>
               Email Address:
               <input
@@ -86,38 +93,15 @@ export default function Login({ providers, csrfToken }) {
             <p style={{ color: "red" }}>{message}</p>
             <br />
             <button
-              type="submit"
-              onClick={(e) => signInUser(e)}
-              className="bg-[#3a7fed] text-white p-1 rounded"
-            >
-              Sign in with Credentials
-            </button>
-            <br />
-            <p>
-              New to TestingHub? Click here to <a href="/signup">sign up</a>
-            </p>
-            {/* <button
               onClick={(e) => signUpUser(e)}
               className="bg-[#3a7fed] text-white p-1 rounded"
             >
               Sign up
-            </button> */}
+            </button>
+            <p>
+              Already registered? Click here to <a href="/login">sign in</a>
+            </p>
           </form>
-          {Object.values(providers).map((provider) => {
-            if (provider.name == "credentials") {
-              return;
-            }
-            return (
-              <div key={provider.name}>
-                <button
-                  className="bg-[#3a7fed] text-white p-1 rounded"
-                  onClick={() => signIn(provider.id, { callbackUrl: "/" })}
-                >
-                  Sign In with {provider.name}
-                </button>
-              </div>
-            );
-          })}
         </div>
       </main>
     </div>
@@ -126,17 +110,15 @@ export default function Login({ providers, csrfToken }) {
 
 export async function getServerSideProps({ req, context }) {
   /* const session = await getSession({ req });
-  if (session) {
-    return {
-      redirect: { destination: "/" },
-    };
-  } */
+    if (session) {
+      return {
+        redirect: { destination: "/" },
+      };
+    } */
   const csrfToken = await getCsrfToken(context);
-  const providers = await getProviders();
   return {
     props: {
       csrfToken,
-      providers,
     },
   };
 }

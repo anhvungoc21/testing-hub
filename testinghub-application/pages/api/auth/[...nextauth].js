@@ -4,7 +4,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import connectToDatabase from "../../../lib/mongodb";
 import Users from "../../../models/UserModel";
 import connectDB from "../../../lib/connectDB";
+// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import bcrypt from "bcrypt";
+// import clientPromise from "../../../lib/mongodb";
 
 connectDB();
 export default NextAuth({

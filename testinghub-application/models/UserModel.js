@@ -7,7 +7,8 @@ const apiKeyLabel = new Schema({
 
 const userSchema = new Schema(
   {
-    email: { type: String, required: true },
+    username: String,
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     apiKeys: {
       type: [{ name: String, apiKey: String }],
