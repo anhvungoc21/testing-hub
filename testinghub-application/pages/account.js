@@ -12,6 +12,25 @@ export default function Account() {
 
   console.log(session);
 
+  const removeApiKey = async (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+    setMessage(null);
+    const res = await fetch("/api/apikey/removeKey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: session?.user.email, name: e.target.id }),
+    });
+
+    console.log(res);
+    const data = await res.json();
+    if (data.message) {
+      setMessage(data.message);
+    }
+  };
+
   const saveApiKey = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -23,12 +42,12 @@ export default function Account() {
       body: JSON.stringify({ email: session?.user.email, apiKeyName, apiKey }),
     });
 
-    console.log(res);
     const data = await res.json();
-    console.log(data);
     if (data.message) {
       setMessage(data.message);
     }
+    setApiKey("");
+    setApiKeyName("");
   };
 
   useEffect(() => {
@@ -59,6 +78,7 @@ export default function Account() {
                 <th className="p-2 border border-slate-600">No.</th>
                 <th className="p-2 border border-slate-600">Name</th>
                 <th className="p-2 border border-slate-600">API key</th>
+                <th className="p-2 border border-slate-600">Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -68,6 +88,11 @@ export default function Account() {
                   <td className="p-2 border border-slate-700">{apiKey.name}</td>
                   <td className="p-2 border border-slate-700">
                     {apiKey.apiKey}
+                  </td>
+                  <td className="p-2 border border-slate-700">
+                    <button id={apiKey.name} onClick={(e) => removeApiKey(e)}>
+                      X
+                    </button>
                   </td>
                 </tr>
               ))}
