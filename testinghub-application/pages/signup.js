@@ -2,6 +2,7 @@ import { getCsrfToken } from "next-auth/react";
 import Header from "../components/Header";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import Router from "next/router";
 
 export default function Signup({ csrfToken }) {
   const [message, setMessage] = useState(null);
@@ -22,7 +23,7 @@ export default function Signup({ csrfToken }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ firstName, lastName, email, password }),
     });
 
     console.log(res);
