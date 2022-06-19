@@ -35,7 +35,7 @@ export default function TestSig({
   const [dataReceived, setDataReceived] = useState(false);
   const [testSignificant, setTestSignificant] = useState([]);
   const [testInsignificant, setTestInsignificant] = useState([]);
-  const [testBuilding, setTestBuilding] = useState([]);
+  // const [testBuilding, setTestBuilding] = useState([]);
   const [dataReceivedLocal, setDataReceivedLocal] = useState(false);
 
   const useIsMount = () => {
@@ -54,17 +54,19 @@ export default function TestSig({
         // First Render -- Check in localStorage
         const sigLS = JSON.parse(localStorage.getItem("significantTests"));
         const insigLS = JSON.parse(localStorage.getItem("insignificantTests"));
-        const buildingLS = JSON.parse(localStorage.getItem("buildingTests"));
-        if (sigLS === null || insigLS === null || buildingLS === null) return;
+        // const buildingLS = JSON.parse(localStorage.getItem("buildingTests"));
+        // if (sigLS === null || insigLS === null || buildingLS === null) return;
+        if (sigLS === null || insigLS === null) return;
+
         if (
           sigLS.length === 0 &&
-          insigLS.length === 0 &&
-          buildingLS.length === 0
+          insigLS.length === 0
+          // buildingLS.length === 0
         )
           return;
         setTestSignificant(sigLS);
         setTestInsignificant(insigLS);
-        setTestBuilding(buildingLS);
+        // setTestBuilding(buildingLS);
         //setDataReceived(true)
         setDataReceivedLocal(true);
         setOkStatusState("Data loaded from last session!");
@@ -92,7 +94,7 @@ export default function TestSig({
         })();
         setTestSignificant([]);
         setTestInsignificant([]);
-        setTestBuilding([]);
+        // setTestBuilding([]);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,7 +115,7 @@ export default function TestSig({
       console.log(json);
       setTestSignificant(json.data[0]);
       setTestInsignificant(json.data[1]);
-      setTestBuilding(json.data[2]);
+      // setTestBuilding(json.data[2]);
       setTestRunning(false);
       setDataReceived(true);
       setOkStatusState("Data Retrieved!");
@@ -123,7 +125,7 @@ export default function TestSig({
   /// BUILD CARDS
   let sigCards;
   let insigCards;
-  let buildingCards;
+  // let buildingCards;
 
   if (testRunning) {
     sigCards = placeholder1;
@@ -171,20 +173,20 @@ export default function TestSig({
     ));
   }
 
-  if (testRunning) {
-    buildingCards = placeholder3;
-  } else if (!dataReceived && !dataReceivedLocal) {
-    buildingCards = undefined;
-  } else {
-    buildingCards = testBuilding.map((item, i) => (
-      <div
-        key={item}
-        className="p-8 content-center text-center h-30 w-52 bg-[#72A4C4] rounded"
-      >
-        Flow ID: {item}
-      </div>
-    ));
-  }
+  // if (testRunning) {
+  //   buildingCards = placeholder3;
+  // } else if (!dataReceived && !dataReceivedLocal) {
+  //   buildingCards = undefined;
+  // } else {
+  //   buildingCards = testBuilding.map((item, i) => (
+  //     <div
+  //       key={item}
+  //       className="p-8 content-center text-center h-30 w-52 bg-[#72A4C4] rounded"
+  //     >
+  //       Flow ID: {item}
+  //     </div>
+  //   ));
+  // }
 
   if (typeof window !== "undefined") {
     if (dataReceived === true || dataReceivedLocal) {
@@ -193,7 +195,7 @@ export default function TestSig({
         "insignificantTests",
         JSON.stringify(testInsignificant)
       );
-      localStorage.setItem("buildingTests", JSON.stringify(testBuilding));
+      // localStorage.setItem("buildingTests", JSON.stringify(testBuilding));
     }
   }
 
@@ -211,12 +213,12 @@ export default function TestSig({
         </div>
         {insigCards}
       </div>
-      <div className="grid grid-flow-row grid-cols-1 grid-rows-5 gap-y-5 text-center h-full w-full justify-items-center">
+      {/* <div className="grid grid-flow-row grid-cols-1 grid-rows-5 gap-y-5 text-center h-full w-full justify-items-center">
         <div className="h-24 w-60 bg-[#232426] rounded p-8">
           Building ({testBuilding.length})
         </div>
         {buildingCards}
-      </div>
+      </div> */}
     </div>
   );
 }
