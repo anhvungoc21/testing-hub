@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     // console.log("User " + user);
     // Send error response if duplicate user is found
     const apiKeysArr = user?.apiKeys;
-    console.log(apiKeysArr);
 
     if (!apiKeysArr) {
       return res.status(200).json();
