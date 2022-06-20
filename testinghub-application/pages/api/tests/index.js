@@ -240,7 +240,14 @@ export default async function handler(req, res) {
   // Returns an array of form [result_sig_tests, result_insig_tests] that indicate which tests are insignificant and which tests are significant
   // Example input: get_significant_tests(r_data, c_data)
   // Example output: [[{TestObject1}, {TestObject2}], [{TestObject3}, {TestObject4}]]
-  function get_significant_tests(apiKey, skeleton, rID, cID, dateNow, timeFrame) {
+  function get_significant_tests(
+    apiKey,
+    skeleton,
+    rID,
+    cID,
+    dateNow,
+    timeFrame
+  ) {
     // let c_arr_data = dict_to_arr(c_data);
     // let r_arr_data = dict_to_arr(r_data);
 
@@ -362,7 +369,10 @@ export default async function handler(req, res) {
 
     let main_metricID = await extract_metrics_ID(apiKey, metric_name);
     let received_metricID = await extract_metrics_ID(apiKey, "Received Email");
-    console.log(main_metricID, received_metricID);
+    console.log(
+      "Main metric: " + main_metricID,
+      "Received metric: :" + received_metricID
+    );
 
     const tableEntry = await read_from_DDB(apiKey);
     console.log(tableEntry);

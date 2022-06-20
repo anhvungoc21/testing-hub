@@ -37,8 +37,6 @@ export default function Center() {
           metric={metricDropDownState}
           daysAgo={dateDropDownState}
           runTest={runTest}
-          setApiState={setApiState}
-          okStatusState={okStatusState}
           setOkStatusState={setOkStatusState}
         />
       </div>

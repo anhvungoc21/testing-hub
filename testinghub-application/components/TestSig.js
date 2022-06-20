@@ -6,8 +6,6 @@ export default function TestSig({
   metric,
   daysAgo,
   runTest,
-  setApiState,
-  okStatusState,
   setOkStatusState,
 }) {
   const { data: session } = useSession();
@@ -31,6 +29,7 @@ export default function TestSig({
     </div>
   );
 
+  const [metricName, setMetricName] = useState();
   const [testRunning, setTestRunning] = useState(false);
   const [dataReceived, setDataReceived] = useState(false);
   const [testSignificant, setTestSignificant] = useState([]);
@@ -102,6 +101,14 @@ export default function TestSig({
     })();
   }, [testRunning]);
 
+  useEffect(() => {
+    if (metric == 0) {
+      setMetricName("Opened");
+    } else {
+      setMetricName("Clicked");
+    }
+  }, [metric]);
+
   /// BUILD CARDS
   let sigCards;
   let insigCards;
@@ -124,9 +131,15 @@ export default function TestSig({
         <br />
         Message Name: {item.message_name}
         <br />
+        Metric: {metricName}
+        <br />
         Winner: {item.winner}
         <br />
-        Loser: {item.loser}
+        <a
+          href={`https://www.klaviyo.com/flow/message/${item.message_id}/reports/variations`}
+        >
+          View Test
+        </a>
       </div>
     ));
   }
@@ -136,6 +149,10 @@ export default function TestSig({
   } else if (!dataReceived) {
     insigCards = undefined;
   } else {
+    testInsignificant.map((item) => {
+      console.log("Item: " + item);
+    });
+
     insigCards = testInsignificant.map((item, i) => (
       <div
         key={item.message_id}
@@ -148,7 +165,13 @@ export default function TestSig({
         <br />
         Message Name: {item.message_name}
         <br />
-        Testing Variations: {item.variation1_id} and {item.variation2_id}
+        Metric: {metricName}
+        <br />
+        <a
+          href={`https://www.klaviyo.com/flow/message/${item.message_id}/reports/variations`}
+        >
+          View Test
+        </a>
       </div>
     ));
   }
