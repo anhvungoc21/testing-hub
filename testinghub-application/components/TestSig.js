@@ -36,7 +36,6 @@ export default function TestSig({
   const [testSignificant, setTestSignificant] = useState([]);
   const [testInsignificant, setTestInsignificant] = useState([]);
   // const [testBuilding, setTestBuilding] = useState([]);
-  const [dataReceivedLocal, setDataReceivedLocal] = useState(false);
 
   const useIsMount = () => {
     const isMountRef = useRef(true);
@@ -51,25 +50,7 @@ export default function TestSig({
   useEffect(
     () => {
       if (isMount) {
-        // First Render -- Check in localStorage
-        const sigLS = JSON.parse(localStorage.getItem("significantTests"));
-        const insigLS = JSON.parse(localStorage.getItem("insignificantTests"));
-        // const buildingLS = JSON.parse(localStorage.getItem("buildingTests"));
-        // if (sigLS === null || insigLS === null || buildingLS === null) return;
-        if (sigLS === null || insigLS === null) return;
-
-        if (
-          sigLS.length === 0 &&
-          insigLS.length === 0
-          // buildingLS.length === 0
-        )
-          return;
-        setTestSignificant(sigLS);
-        setTestInsignificant(insigLS);
-        // setTestBuilding(buildingLS);
-        //setDataReceived(true)
-        setDataReceivedLocal(true);
-        setOkStatusState("Data loaded from last session!");
+        // First Render
       } else {
         // Subsequent Renders
         setOkStatusState("");
@@ -128,7 +109,7 @@ export default function TestSig({
 
   if (testRunning) {
     sigCards = placeholder1;
-  } else if (!dataReceived && !dataReceivedLocal) {
+  } else if (!dataReceived) {
     sigCards = undefined;
   } else {
     sigCards = testSignificant.map((item, i) => (
@@ -152,7 +133,7 @@ export default function TestSig({
 
   if (testRunning) {
     insigCards = placeholder2;
-  } else if (!dataReceived && !dataReceivedLocal) {
+  } else if (!dataReceived) {
     insigCards = undefined;
   } else {
     insigCards = testInsignificant.map((item, i) => (
@@ -174,7 +155,7 @@ export default function TestSig({
 
   // if (testRunning) {
   //   buildingCards = placeholder3;
-  // } else if (!dataReceived && !dataReceivedLocal) {
+  // } else if (!dataReceived) {
   //   buildingCards = undefined;
   // } else {
   //   buildingCards = testBuilding.map((item, i) => (
@@ -186,17 +167,6 @@ export default function TestSig({
   //     </div>
   //   ));
   // }
-
-  if (typeof window !== "undefined") {
-    if (dataReceived === true || dataReceivedLocal) {
-      localStorage.setItem("significantTests", JSON.stringify(testSignificant));
-      localStorage.setItem(
-        "insignificantTests",
-        JSON.stringify(testInsignificant)
-      );
-      // localStorage.setItem("buildingTests", JSON.stringify(testBuilding));
-    }
-  }
 
   return (
     <div className="flex text-white">
