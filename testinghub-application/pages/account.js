@@ -1,9 +1,10 @@
 import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import { getSession, useSession } from "next-auth/react";
+import Router from "next/router";
 
 export default function Account() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [message, setMessage] = useState(null);
   const [apiKeyName, setApiKeyName] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -66,6 +67,14 @@ export default function Account() {
       console.log(apiKeys);
     })();
   }, [session, message]);
+
+  if (status === "unauthenticated") {
+    return (
+      <p>
+        Access Denied. Please go here to <a href="/login">login</a>
+      </p>
+    );
+  }
 
   return (
     <div className="h-screen overflow-hidden">
@@ -137,23 +146,3 @@ export default function Account() {
     </div>
   );
 }
-
-/* export async function getStaticProps(context) {
-  const session = await getSession(context);
-  const res = await fetch("http://localhost:3000/api/apikey/getKeys", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email: session?.user.email }),
-  });
-
-  const json = await res.json();
-  const data = await json.data;
-  console.log(data);
-  return {
-    props: {
-      apiKeys: data,
-    },
-  };
-} */
