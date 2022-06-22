@@ -20,6 +20,7 @@ const Header = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   let accountTab;
+  let testingTab;
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -37,7 +38,23 @@ const Header = () => {
     accountTab = (
       <NavItem>
         <NavLink className="navLink" href="/account">
-          My Account
+          Settings
+        </NavLink>
+      </NavItem>
+    );
+
+    testingTab = (
+      <NavItem>
+        <NavLink className="navLink" href="/testing">
+          My TestingHub
+        </NavLink>
+      </NavItem>
+    );
+  } else {
+    testingTab = (
+      <NavItem>
+        <NavLink className="navLink" href="/login">
+          Log In
         </NavLink>
       </NavItem>
     );
@@ -71,14 +88,7 @@ const Header = () => {
                   For Brands
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  className="navLink"
-                  href={session ? "/testing" : "/login"}
-                >
-                  Account/Testing
-                </NavLink>
-              </NavItem>
+              {testingTab}
               {accountTab}
             </Nav>
           </Collapse>

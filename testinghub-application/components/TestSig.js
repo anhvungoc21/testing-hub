@@ -61,7 +61,6 @@ export default function TestSig({
             },
             body: JSON.stringify({ apiKey }),
           });
-          console.log(res);
           if (!res.ok) {
             setTestRunning(false);
             if (apiKey === "") return;
@@ -91,10 +90,10 @@ export default function TestSig({
         body: JSON.stringify({ apiKey, metric, daysAgo }),
       });
       const json = await res.json();
-      console.log(json);
       setTestSignificant(json.data[0]);
       setTestInsignificant(json.data[1]);
       // setTestBuilding(json.data[2]);
+      console.log("Test ran");
       setTestRunning(false);
       setDataReceived(true);
       setOkStatusState("Data Retrieved!");
