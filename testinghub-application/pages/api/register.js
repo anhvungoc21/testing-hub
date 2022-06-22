@@ -30,13 +30,15 @@ export default async function handler(req, res) {
   const message = `<div>Click on the link below to verify your email, if the link is not working then please paste into the browser.</div></br>
     <div>Link: ${link}</div>`;
 
+  /*
   sendEmail({
     to: body.email,
     subject: "Please confirm your account",
     html: message,
   });
+  */
 
   return res.status(200).json({
-    message: "User was registered successfully! Please check your email!",
+    message: "Registered successfully!",
   });
 }
