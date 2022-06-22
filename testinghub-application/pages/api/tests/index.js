@@ -36,6 +36,7 @@ export default async function handler(req, res) {
       .then((res) => res.json())
       .then((json) => {
         const results = json.results;
+        console.log(results);
         const varDict = {};
         results.forEach((record) => {
           const varID = String(record.segment.match(regex)).slice(1, 7);

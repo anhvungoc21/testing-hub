@@ -32,7 +32,7 @@ export default function SearchBox({
       const json = await res.json();
       setApiKeys(json.data);
     })();
-  }, []);
+  }, [session]);
 
   return (
     // DropDown
