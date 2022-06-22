@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function ResetPassword() {
+  /*
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
@@ -51,4 +52,5 @@ export default function ResetPassword() {
       <p style={{ color: "red" }}>{message}</p>
     </form>
   );
+  */
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 
 export default function Forget() {
+  /*
   const [email, setEmail] = useState("");
 
   const forgetPassword = async (e) => {
@@ -44,4 +45,5 @@ export default function Forget() {
       </main>
     </div>
   );
+  */
 }
