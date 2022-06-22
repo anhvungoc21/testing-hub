@@ -77,7 +77,7 @@ export default function Account() {
   }
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen overflow-scroll scrollbar-hide">
       <Header />
       <main className="flex">
         <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
