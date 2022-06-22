@@ -1,7 +1,7 @@
 import Header from "../components/Header";
+import ChangePassword from "../components/ChangePassword";
 import { useState, useEffect } from "react";
 import { getSession, useSession } from "next-auth/react";
-import Router from "next/router";
 
 export default function Account() {
   const { data: session, status } = useSession();
@@ -81,66 +81,72 @@ export default function Account() {
       <Header />
       <main className="flex">
         <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
-          <table className="p-2 border-separate border-spacing border border-slate-500 m-">
-            <thead>
-              <tr>
-                <th className="p-2 border border-slate-600">No.</th>
-                <th className="p-2 border border-slate-600">Name</th>
-                <th className="p-2 border border-slate-600">API key</th>
-                <th className="p-2 border border-slate-600">Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {apiKeys.map((apiKey, i) => (
-                <tr id={i}>
-                  <td className="p-2 border border-slate-700">{i + 1}</td>
-                  <td className="p-2 border border-slate-700">{apiKey.name}</td>
-                  <td className="p-2 border border-slate-700">
-                    {apiKey.apiKey}
-                  </td>
-                  <td className="p-2 border border-slate-700">
-                    <button id={apiKey.name} onClick={(e) => removeApiKey(e)}>
-                      X
-                    </button>
-                  </td>
+          <div>
+            <table className="p-2 border-separate border-spacing border border-slate-500 m-">
+              <thead>
+                <tr>
+                  <th className="p-2 border border-slate-600">No.</th>
+                  <th className="p-2 border border-slate-600">Name</th>
+                  <th className="p-2 border border-slate-600">API key</th>
+                  <th className="p-2 border border-slate-600">Remove</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <br />
-          <h6>Limit: {apiKeyLimit} API keys</h6>
-          <div className="border p-2">
-            <h5 className="center">Add your API keys:</h5>
-            <label>
-              Name:
-              <input
-                type="text"
-                name="apiKeyName"
-                id="apiKeyName"
-                value={apiKeyName}
-                onChange={(e) => setApiKeyName(e.target.value)}
-              ></input>
-            </label>
+              </thead>
+              <tbody>
+                {apiKeys.map((apiKey, i) => (
+                  <tr id={i}>
+                    <td className="p-2 border border-slate-700">{i + 1}</td>
+                    <td className="p-2 border border-slate-700">
+                      {apiKey.name}
+                    </td>
+                    <td className="p-2 border border-slate-700">
+                      {apiKey.apiKey}
+                    </td>
+                    <td className="p-2 border border-slate-700">
+                      <button id={apiKey.name} onClick={(e) => removeApiKey(e)}>
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
             <br />
-            <label>
-              API key:
-              <input
-                type="text"
-                name="apiKey"
-                id="apiKey"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-              ></input>
-            </label>
-            <p style={{ color: "red" }}>{message}</p>
-            <button
-              type="submit"
-              onClick={(e) => saveApiKey(e)}
-              className="bg-[#3a7fed] text-white p-1 rounded"
-            >
-              Save API
-            </button>
+            <h6>Limit: {apiKeyLimit} API keys</h6>
+            <div className="border p-2">
+              <h5 className="center">Add your API keys:</h5>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="apiKeyName"
+                  id="apiKeyName"
+                  value={apiKeyName}
+                  onChange={(e) => setApiKeyName(e.target.value)}
+                ></input>
+              </label>
+              <br />
+              <label>
+                API key:
+                <input
+                  type="text"
+                  name="apiKey"
+                  id="apiKey"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                ></input>
+              </label>
+              <p style={{ color: "red" }}>{message}</p>
+              <button
+                type="submit"
+                onClick={(e) => saveApiKey(e)}
+                className="bg-[#3a7fed] text-white p-1 rounded"
+              >
+                Save API
+              </button>
+            </div>
           </div>
+          <br />
+          <ChangePassword />
         </div>
       </main>
     </div>

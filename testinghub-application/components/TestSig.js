@@ -9,9 +9,6 @@ export default function TestSig({
   setOkStatusState,
 }) {
   const { data: session } = useSession();
-  if (!session) {
-    return;
-  }
   const placeholder1 = (
     <div key="placeholder1" className="h-20 w-52 bg-[#72A4C4] rounded">
       Loading data...
@@ -61,7 +58,6 @@ export default function TestSig({
             },
             body: JSON.stringify({ apiKey }),
           });
-          console.log(res);
           if (!res.ok) {
             setTestRunning(false);
             if (apiKey === "") return;
@@ -91,10 +87,10 @@ export default function TestSig({
         body: JSON.stringify({ apiKey, metric, daysAgo }),
       });
       const json = await res.json();
-      console.log(json);
       setTestSignificant(json.data[0]);
       setTestInsignificant(json.data[1]);
       // setTestBuilding(json.data[2]);
+      console.log("Test ran");
       setTestRunning(false);
       setDataReceived(true);
       setOkStatusState("Data Retrieved!");

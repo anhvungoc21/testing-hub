@@ -34,7 +34,7 @@ export default function Signup({ csrfToken }) {
     }
     console.log(message);
     console.log(email, password);
-    if (data.message == "Registered successfully") {
+    if (data.message == "Registered successfully!") {
       let options = { redirect: false, email, password };
       const res = signIn("credentials", options);
       return Router.push("/testing");

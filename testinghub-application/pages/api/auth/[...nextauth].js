@@ -106,13 +106,16 @@ export default NextAuth({
 
 const signInUser = async ({ password, user }) => {
   if (!user.password) {
-    throw new Error("Please enter password");
+    throw new Error("Please log in with Google!");
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     throw new Error("Password not correct");
   }
 
+  if (!user.status) {
+    throw new Error("Pending account. Please verify your email!");
+  }
   return user;
 };
 

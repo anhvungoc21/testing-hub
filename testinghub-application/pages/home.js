@@ -1,4 +1,7 @@
+import { useSession } from "next-auth/react";
+
 const Home = () => {
+  const { data: session } = useSession();
   return (
     <div>
       <div className="center">
@@ -8,7 +11,7 @@ const Home = () => {
               Retention optimization made easy
             </h1>
             <a
-              href="/account"
+              href={session ? "/testing" : "/login"}
               class="btn btn-primary btn-lg customButton "
               type="button"
             >

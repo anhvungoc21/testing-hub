@@ -10,6 +10,9 @@ const userSchema = new Schema(
       default: [],
     },
     apiKeyLimit: { type: Number, default: 2 },
+    jwt: { type: String, unique: true },
+    resetToken: { type: String, unique: true },
+    status: { type: Boolean, default: true },
   },
   { collection: "testusers" }
 );
