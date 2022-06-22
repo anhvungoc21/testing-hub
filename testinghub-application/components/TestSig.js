@@ -9,9 +9,6 @@ export default function TestSig({
   setOkStatusState,
 }) {
   const { data: session } = useSession();
-  if (!session) {
-    return;
-  }
   const placeholder1 = (
     <div key="placeholder1" className="h-20 w-52 bg-[#72A4C4] rounded">
       Loading data...
