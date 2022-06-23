@@ -235,11 +235,10 @@ export default async function handler(req, res) {
   // Find intersection between those keys.
 
   // Returns an array of form [result_sig_tests, result_insig_tests] that indicate which tests are insignificant and which tests are significant
-  // Example input: get_significant_tests(r_data, c_data)
-  // Example output: [[{TestObject1}, {TestObject2}], [{TestObject3}, {TestObject4}]]
   async function get_significant_tests(
     apiKey,
     skeleton,
+    messageDict,
     rID,
     cID,
     dateNow,
@@ -257,7 +256,6 @@ export default async function handler(req, res) {
     //   result_r.push(subArr[0]);
     // }
 
-    let message_id_dict = {};
     const arr_data = dict_to_arr(skeleton);
     let flowArr = [];
 
@@ -314,7 +312,7 @@ export default async function handler(req, res) {
         if (!test) continue;
         //  test = metric_1, received_1, metric_2, received_2, winner
         if (test.winner == "building") {
-          let message_name = message_id_dict[message]
+          let message_name = messageDict[message]
           let test_obj = new TestObject(
             flow,
             message,
@@ -327,9 +325,10 @@ export default async function handler(req, res) {
             test.winner,
             test.loser
           )
+          console.log(test_obj);
           result_building.push(test_obj)
         } else if (test.winner) {
-          let message_name = message_id_dict[message];
+          let message_name = messageDict[message];
           let test_obj = new TestObject(
             flow,
             message,
@@ -342,10 +341,12 @@ export default async function handler(req, res) {
             test.received2_count,
             test.winner,
             test.loser
+            
           );
+          console.log(test_obj);
           result_sig.push(test_obj);
         } else {
-          let message_name = message_id_dict[message];
+          let message_name = messageDict[message];
           let test_obj = new TestObject(
             flow,
             message,
@@ -360,8 +361,8 @@ export default async function handler(req, res) {
             test.loser
           );
           result_insig.push(test_obj);
+          console.log(test_obj);
         }
-        console.log(test);
       }
     }
     return { data: [result_sig, result_insig, result_building] };
@@ -412,11 +413,13 @@ export default async function handler(req, res) {
       "DYNAMODB ENTRY: -------------------------------------------------"
     );
     console.log(tableEntry);
-    const skeleton = tableEntry.Item.message;
+    const skeleton = tableEntry.Item.data;
+    const messageDict = tableEntry.Item.messageDict
 
     return await get_significant_tests(
       apiKey,
       skeleton,
+      messageDict,
       received_metricID,
       main_metricID,
       dateNow,
