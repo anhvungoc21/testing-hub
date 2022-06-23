@@ -188,7 +188,9 @@ export default function TestSig({
         </a>
         <br />
         Message Name: {item.message_name}
-        <br/>
+        <br />
+        Metric: {metricName}
+        <br />
         <a
           href={`https://www.klaviyo.com/flow/message/${item.message_id}/reports/variations`}
         >
