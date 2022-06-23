@@ -1,3 +1,14 @@
 .center {
     text-align: center;
 }
+
+.footer {
+    background-color: #62C38C;
+}
+
+.topPadding {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+

@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import SignUpForm from "../components/SignUpForm";
 
 const Home = () => {
   const { data: session } = useSession();
@@ -8,11 +9,12 @@ const Home = () => {
         <div class="p-5 mb-4 bg-dark rounded-3 jumbotron">
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold whiteText">
-              Retention optimization made easy
+              Email Optimization on Auto Pilot
             </h1>
+            <h4 class="fw-bold whiteText">A/B Testing Made Easy</h4>
             <a
               href={session ? "/testing" : "/login"}
-              class="btn btn-primary btn-lg customButton "
+              class="btn btn-dark btn-lg "
               type="button"
             >
               Get TestingHub
@@ -20,8 +22,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <div className="center">
+      <div className="center widthMax">
         <br></br>
 
         <h1>How it began...</h1>
@@ -79,6 +80,7 @@ const Home = () => {
           release🔥
         </p>
       </div>
+      <SignUpForm />
     </div>
   );
 };
