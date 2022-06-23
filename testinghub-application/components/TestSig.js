@@ -31,7 +31,7 @@ export default function TestSig({
   const [dataReceived, setDataReceived] = useState(false);
   const [testSignificant, setTestSignificant] = useState([]);
   const [testInsignificant, setTestInsignificant] = useState([]);
-  // const [testBuilding, setTestBuilding] = useState([]);
+  const [testBuilding, setTestBuilding] = useState([]);
 
   const useIsMount = () => {
     const isMountRef = useRef(true);
@@ -69,7 +69,7 @@ export default function TestSig({
         })();
         setTestSignificant([]);
         setTestInsignificant([]);
-        // setTestBuilding([]);
+        setTestBuilding([]);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,7 +89,7 @@ export default function TestSig({
       const json = await res.json();
       setTestSignificant(json.data[0]);
       setTestInsignificant(json.data[1]);
-      // setTestBuilding(json.data[2]);
+      setTestBuilding(json.data[2]);
       console.log("Test ran");
       setTestRunning(false);
       setDataReceived(true);
@@ -103,12 +103,12 @@ export default function TestSig({
     } else {
       setMetricName("Clicked");
     }
-  }, [metric]);
+  }, [testRunning]);
 
-  /// BUILD CARDS
+  /// CARDS
   let sigCards;
   let insigCards;
-  // let buildingCards;
+  let buildingCards;
 
   if (testRunning) {
     sigCards = placeholder1;
@@ -172,20 +172,31 @@ export default function TestSig({
     ));
   }
 
-  // if (testRunning) {
-  //   buildingCards = placeholder3;
-  // } else if (!dataReceived) {
-  //   buildingCards = undefined;
-  // } else {
-  //   buildingCards = testBuilding.map((item, i) => (
-  //     <div
-  //       key={item}
-  //       className="p-8 content-center text-center h-30 w-52 bg-[#72A4C4] rounded"
-  //     >
-  //       Flow ID: {item}
-  //     </div>
-  //   ));
-  // }
+  if (testRunning) {
+    buildingCards = placeholder3;
+  } else if (!dataReceived) {
+    buildingCards = undefined;
+  } else {
+    buildingCards = testBuilding.map((item, i) => (
+      <div
+        key={item.message_id}
+        className="content-center text-center h-30 w-52 bg-[#72A4C4] rounded"
+      >
+        Flow ID:{" "}
+        <a href={`https://www.klaviyo.com/flow/${item.flow_id}/edit`}>
+          {item.flow_id}
+        </a>
+        <br />
+        Message Name: {item.message_name}
+        <br/>
+        <a
+          href={`https://www.klaviyo.com/flow/message/${item.message_id}/reports/variations`}
+        >
+          View Test
+        </a>
+      </div>
+    ));
+  }
 
   return (
     <div className="flex text-white">
@@ -201,12 +212,12 @@ export default function TestSig({
         </div>
         {insigCards}
       </div>
-      {/* <div className="grid grid-flow-row grid-cols-1 grid-rows-5 gap-y-5 text-center h-full w-full justify-items-center">
+      <div className="grid grid-flow-row grid-cols-1 grid-rows-5 gap-y-5 text-center h-full w-full justify-items-center">
         <div className="h-24 w-60 bg-[#232426] rounded p-8">
           Building ({testBuilding.length})
         </div>
         {buildingCards}
-      </div> */}
+      </div>
     </div>
   );
 }

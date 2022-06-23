@@ -14,7 +14,7 @@ export default function Center() {
   console.log(session);
 
   return (
-    <div className="w-screen h-screen overflow-y-scroll scrollbar-hide">
+    <div className="w-full h-full overflow-y-scroll scrollbar-hide">
       <btn
         onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
         className="absolute cursor-pointer top-5 right-8 w-10 h-10 rounded-full"

@@ -15,7 +15,7 @@ export default function Home() {
     );
   }
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen overflow-scroll scrollbar-hide">
       <Header />
       <main className="flex">
         <Center />
