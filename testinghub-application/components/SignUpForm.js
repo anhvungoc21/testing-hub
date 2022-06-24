@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import MailchimpReact from "mailchimp-react";
-import jsonp from "jsonp";
+// import MailchimpReact from "mailchimp-react";
+// import jsonp from "jsonp";
 
 export default ({
   styles = {

@@ -13,16 +13,33 @@ export default function Account() {
 
   console.log(session);
 
+  const fetchIndividualSkeleton = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/aws/runFetchSkeleton", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ apiKey: e.target.dataset.apiKey }),
+    });
+    const data = await res.json();
+    if (data.message) {
+      setMessage(data.message);
+    }
+  };
+
   const removeApiKey = async (e) => {
     e.preventDefault();
-    console.log(e.target.id);
     setMessage(null);
     const res = await fetch("/api/apikey/removeKey", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: session?.user.email, name: e.target.id }),
+      body: JSON.stringify({
+        email: session?.user.email,
+        name: e.target.dataset.apiKeyName,
+      }),
     });
 
     console.log(res);
@@ -88,6 +105,7 @@ export default function Account() {
                   <th className="p-2 border border-slate-600">No.</th>
                   <th className="p-2 border border-slate-600">Name</th>
                   <th className="p-2 border border-slate-600">API key</th>
+                  <th className="p-2 border border-slate-600">Fetch Data</th>
                   <th className="p-2 border border-slate-600">Remove</th>
                 </tr>
               </thead>
@@ -102,7 +120,20 @@ export default function Account() {
                       {apiKey.apiKey}
                     </td>
                     <td className="p-2 border border-slate-700">
-                      <button id={apiKey.name} onClick={(e) => removeApiKey(e)}>
+                      <button
+                        className="hover:text-gray-300"
+                        data-api-key={apiKey.apiKey}
+                        onClick={(e) => fetchIndividualSkeleton(e)}
+                      >
+                        Fetch
+                      </button>
+                    </td>
+                    <td className="p-2 border border-slate-700">
+                      <button
+                        className="hover:text-gray-300"
+                        data-api-key-name={apiKey.name}
+                        onClick={(e) => removeApiKey(e)}
+                      >
                         X
                       </button>
                     </td>

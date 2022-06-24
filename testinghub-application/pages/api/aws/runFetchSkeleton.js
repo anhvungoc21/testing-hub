@@ -27,7 +27,10 @@ const async_lambda_invoke = async (apiKey) => {
 export default async function handler(req, res) {
   const privateApiKey = req.body.apiKey;
   try {
-    return await res.status(200).json(await async_lambda_invoke(privateApiKey));
+    const awsRes = await async_lambda_invoke(privateApiKey)
+    console.log('AWS RESPONSE:')
+    console.log(awsRes)
+    return res.status(200).json({ message: "Data for your API Key is being Fetched" });
   } catch (error) {
     console.log(error);
     throw error;
