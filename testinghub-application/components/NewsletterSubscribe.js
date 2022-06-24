@@ -3,7 +3,7 @@ import NewsLetterForm from "./NewsLetterForm";
 
 const NewsletterSubscribe = () => {
   const MAILCHIMP_URL =
-    "https://gmail.us20.list-manage.com/subscribe/post?u=a40849b39be252ac3c9aa8765&amp;id=5abdc4fb23";
+    "https://get-testing-hub.us14.list-manage.com/subscribe/post?u=9ad8fd3c79888219ef233b933&amp;id=a6eaeb060d";
 
   return (
     <MailchimpSubscribe
