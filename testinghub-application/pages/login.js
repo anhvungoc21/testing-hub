@@ -120,13 +120,12 @@ export default function Login({ providers, csrfToken }) {
           <br></br>
           <div></div>
           <h4>New to TestingHub?</h4>
-          <button
-            type="submit"
-            onClick={(e) => signInUser(e)}
+          <a
             className=" text-white p-1 rounded standardButton topMargin"
+            href="/signup"
           >
             Sign Up
-          </button>
+          </a>
         </div>
       </main>
       <Footer />
