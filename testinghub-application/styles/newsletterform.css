@@ -1,0 +1,19 @@
+.centerItem {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+.topMargin {
+    margin-top: 10px;
+}
+
+.jumbotronSignUp {
+    margin: 15px 200px 0px 200px;
+    border-radius:10px;
+    background: 
+linear-gradient(
+  rgba(125, 250, 250, 0.45),
+  #62C38C)
+}

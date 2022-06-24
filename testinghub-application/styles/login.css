@@ -1,0 +1,15 @@
+.centerItem {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+.topMargin {
+    margin-top: 10px;
+}
+
+.standardButton {
+    background-color: #62C38C;
+    font-size: larger;
+}

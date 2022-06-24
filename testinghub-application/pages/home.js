@@ -1,12 +1,11 @@
 import { useSession } from "next-auth/react";
-import SignUpForm from "../components/SignUpForm";
 
 const Home = () => {
   const { data: session } = useSession();
   return (
     <div>
       <div className="center">
-        <div class="p-5 mb-4 bg-dark rounded-3 jumbotron">
+        <div class="p-5 mb-4 bg-dark rounded-3 jumbotronLanding">
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold whiteText">
               Email Optimization on Auto Pilot
@@ -80,7 +79,6 @@ const Home = () => {
           release🔥
         </p>
       </div>
-      <SignUpForm />
     </div>
   );
 };

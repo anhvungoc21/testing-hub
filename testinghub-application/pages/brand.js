@@ -35,8 +35,6 @@ const Brand = () => {
           it needs in today’s marketplace.
         </p>
       </div>
-
-      <hr></hr>
       <Footer />
     </Layout>
   );

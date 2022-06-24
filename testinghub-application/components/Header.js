@@ -21,18 +21,6 @@ const Header = () => {
 
   let accountTab;
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-  });
-
-  const handleScroll = () => {
-    if (window.scrollY > 90) {
-      setSticky(true);
-    } else if (window.scrollY < 90) {
-      setSticky(false);
-    }
-  };
-
   if (session) {
     accountTab = (
       <NavItem>
@@ -48,7 +36,7 @@ const Header = () => {
 
   return (
     <div className={`header${sticky ? " sticky" : ""}`}>
-      <Navbar light expand="md">
+      <Navbar light expand="lg">
         <Container>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>

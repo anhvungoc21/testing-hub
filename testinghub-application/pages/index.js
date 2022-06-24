@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Home from "./home";
+import NewsletterSubscribe from "../components/NewsletterSubscribe";
 import Footer from "../components/Footer";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
@@ -27,10 +28,16 @@ export default function Index() {
   }, [session]);
 
   return (
-    <div>
+    <div class="center">
       <Layout pageTitle="Landing Page">
         <Header />
         <Home />
+        <div class=" mb-4 bg-dark rounded-3 jumbotronSignUp">
+          <div class="container-fluid py-5">
+            <NewsletterSubscribe />
+          </div>
+        </div>
+
         <Footer />
       </Layout>
     </div>
