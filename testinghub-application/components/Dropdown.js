@@ -8,17 +8,6 @@ import {
 } from "reactstrap";
 import { signOut } from "next-auth/react";
 
-const MyLink = forwardRef((props, ref) => {
-  let { href, children, ...rest } = props;
-  return (
-    <Link href={href}>
-      <a ref={ref} {...rest}>
-        {children}
-      </a>
-    </Link>
-  );
-});
-
 export default function Dropdown() {
   return (
     <div>

@@ -56,7 +56,7 @@ export default function Login({ providers, csrfToken }) {
 
   return (
     <div className="h-screen overflow-hidden">
-      <Header />
+      <Header className="w-screen" />
       <main className="flex">
         <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
           <h1 className="">Testing Hub</h1>

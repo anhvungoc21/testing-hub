@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <div className={`header${sticky ? " sticky" : ""}`}>
-      <Navbar light expand="md">
+      <Navbar className="w-screen" light expand="md">
         <Container>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>

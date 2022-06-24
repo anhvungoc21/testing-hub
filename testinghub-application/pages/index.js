@@ -28,7 +28,7 @@ export default function Index() {
 
   return (
     <div>
-      <Layout pageTitle="Landing Page">
+      <Layout className="w-screen" pageTitle="Landing Page">
         <Header />
         <Home />
         <Footer />
