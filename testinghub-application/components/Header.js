@@ -10,11 +10,11 @@ import {
   NavLink,
 } from "reactstrap";
 import { useSession } from "next-auth/react";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-
   const [sticky, setSticky] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -43,12 +43,14 @@ const Header = () => {
     );
   }
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
   return (
     <div className={`header${sticky ? " sticky" : ""}`}>
       <Navbar light expand="md">
         <Container>
           <NavbarToggler onClick={toggle} />
-
           <Collapse isOpen={isOpen} navbar>
             <Nav className="m-auto" navbar>
               <NavbarBrand className="logo" href="/">
@@ -71,15 +73,14 @@ const Header = () => {
                   For Brands
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  className="navLink"
-                  href={session ? "/testing" : "/login"}
-                >
-                  Account/Testing
-                </NavLink>
-              </NavItem>
-              {accountTab}
+              {!session && (
+                <NavItem>
+                  <NavLink className="navLink" href={"/login"}>
+                    Log In
+                  </NavLink>
+                </NavItem>
+              )}
+              {session && <Dropdown />}
             </Nav>
           </Collapse>
         </Container>
