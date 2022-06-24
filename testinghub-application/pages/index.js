@@ -28,12 +28,12 @@ export default function Index() {
   }, [session]);
 
   return (
-    <div class="center">
+    <div className="center">
       <Layout pageTitle="Landing Page">
         <Header />
         <Home />
-        <div class=" mb-4 bg-dark rounded-3 jumbotronSignUp">
-          <div class="container-fluid py-5">
+        <div className=" mb-4 bg-dark rounded-3 jumbotronSignUp">
+          <div className="container-fluid py-5">
             <NewsletterSubscribe />
           </div>
         </div>

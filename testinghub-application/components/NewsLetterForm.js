@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewsletterForm = ({ status, message, onValidated }) => {
+const NewsLetterForm = ({ status, message, onValidated }) => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState(null);
   //   const [fName, setFName] = useState(null);
@@ -111,4 +111,4 @@ const NewsletterForm = ({ status, message, onValidated }) => {
   );
 };
 
-export default NewsletterForm;
+export default NewsLetterForm;
