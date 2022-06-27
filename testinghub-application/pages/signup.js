@@ -42,10 +42,10 @@ export default function Signup({ csrfToken }) {
   };
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen">
       <Header />
       <main className="flex">
-        <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
+        <div className="flex flex-col items-center min-h-screen w-full justify-center">
           <form method="post">
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <label>
@@ -54,6 +54,7 @@ export default function Signup({ csrfToken }) {
                 type="text"
                 name="firstName"
                 id="firstName"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -65,6 +66,7 @@ export default function Signup({ csrfToken }) {
                 type="text"
                 name="lastName"
                 id="lastName"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -76,6 +78,7 @@ export default function Signup({ csrfToken }) {
                 type="email"
                 name="email"
                 id="email"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -87,20 +90,20 @@ export default function Signup({ csrfToken }) {
                 type="password"
                 name="password"
                 id="password"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <p style={{ color: "red" }}>{message}</p>
-            <br />
             <button
               onClick={(e) => signUpUser(e)}
-              className="bg-[#3a7fed] text-white p-1 rounded"
+              className=" text-white p-1 rounded centerItem standardButton"
             >
               Sign up
             </button>
-            <p>
-              Already registered? Click here to <a href="/login">sign in</a>
+            <p className="topMargin">
+              Already registered? Click here to <a href="/login">Sign In</a>
             </p>
           </form>
         </div>

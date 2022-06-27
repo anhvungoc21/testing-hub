@@ -4,11 +4,12 @@
 
 .footer {
     background-color: #62C38C;
+    padding-bottom: 10px;
+    position: sticky;
 }
 
 .topPadding {
     padding-top: 25px;
-    padding-bottom: 25px;
 }
 
 

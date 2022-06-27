@@ -9,7 +9,7 @@ const userSchema = new Schema(
       type: [{ name: String, apiKey: String }],
       default: [],
     },
-    apiKeyLimit: { type: Number, default: 2 },
+    apiKeyLimit: { type: Number, default: 50 },
     jwt: { type: String, unique: true },
     resetToken: { type: String, unique: true },
     status: { type: Boolean, default: true },

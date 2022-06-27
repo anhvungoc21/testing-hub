@@ -7,6 +7,7 @@ import {
 } from "next-auth/react";
 import Router from "next/router";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Login({ providers, csrfToken }) {
   const [firstName, setFirstName] = useState();
@@ -55,10 +56,10 @@ export default function Login({ providers, csrfToken }) {
   }; */
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen">
       <Header />
       <main className="flex">
-        <div className="flex flex-col items-center bg-[#FEFAF3] min-h-screen w-full justify-center">
+        <div className="flex flex-col items-center min-h-screen w-full justify-center">
           <h1 className="">Testing Hub</h1>
           <form method="post">
             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
@@ -68,6 +69,7 @@ export default function Login({ providers, csrfToken }) {
                 type="email"
                 name="email"
                 id="email"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -79,23 +81,20 @@ export default function Login({ providers, csrfToken }) {
                 type="password"
                 name="password"
                 id="password"
+                className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-black-400 border-b block pl-4 pr-6 py-2  bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <p style={{ color: "red" }}>{message}</p>
-            <br />
             <button
               type="submit"
               onClick={(e) => signInUser(e)}
-              className="bg-[#3a7fed] text-white p-1 rounded"
+              className=" text-white p-1 rounded centerItem standardButton"
             >
-              Sign in with Credentials
+              Sign in
             </button>
-            <br />
-            <p>
-              New to TestingHub? Click here to <a href="/signup">sign up</a>
-            </p>
+
             {/* <button
               onClick={(e) => signUpUser(e)}
               className="bg-[#3a7fed] text-white p-1 rounded"
@@ -110,7 +109,7 @@ export default function Login({ providers, csrfToken }) {
             return (
               <div key={provider.name}>
                 <button
-                  className="bg-[#3a7fed] text-white p-1 rounded"
+                  className=" text-white p-1 rounded standardButton topMargin"
                   onClick={() => signIn(provider.id, { callbackUrl: "/" })}
                 >
                   Sign In with {provider.name}
@@ -118,8 +117,18 @@ export default function Login({ providers, csrfToken }) {
               </div>
             );
           })}
+          <br></br>
+          <div></div>
+          <h4>New to TestingHub?</h4>
+          <a
+            className=" text-white p-1 rounded standardButton topMargin"
+            href="/signup"
+          >
+            Sign Up
+          </a>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

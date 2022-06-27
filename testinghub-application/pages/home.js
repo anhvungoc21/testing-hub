@@ -1,20 +1,19 @@
 import { useSession } from "next-auth/react";
-import SignUpForm from "../components/SignUpForm";
 
 const Home = () => {
   const { data: session } = useSession();
   return (
     <div>
       <div className="center">
-        <div class="p-5 mb-4 bg-dark rounded-3 jumbotron">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold whiteText">
+        <div className="p-5 mb-4 bg-dark rounded-3 jumbotronLanding">
+          <div className="container-fluid py-5">
+            <h1 className="display-5 fw-bold whiteText">
               Email Optimization on Auto Pilot
             </h1>
-            <h4 class="fw-bold whiteText">A/B Testing Made Easy</h4>
+            <h4 className="fw-bold whiteText">A/B Testing Made Easy</h4>
             <a
               href={session ? "/testing" : "/login"}
-              class="btn btn-dark btn-lg "
+              className="btn btn-dark btn-lg "
               type="button"
             >
               Get TestingHub
@@ -80,7 +79,6 @@ const Home = () => {
           release🔥
         </p>
       </div>
-      <SignUpForm />
     </div>
   );
 };

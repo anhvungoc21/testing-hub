@@ -116,7 +116,7 @@ export default function Account() {
                     <td className="p-2 border border-slate-700">
                       {apiKey.name}
                     </td>
-                    <td className="p-2 border border-slate-700">
+                    <td className="p-2 border border-slate-700" type="password">
                       {apiKey.apiKey}
                     </td>
                     <td className="p-2 border border-slate-700">
