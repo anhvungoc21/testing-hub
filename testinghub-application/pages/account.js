@@ -58,7 +58,11 @@ export default function Account() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: session?.user.email, apiKeyName, apiKey }),
+      body: JSON.stringify({
+        email: session?.user.email,
+        apiKeyName: apiKeyName.trim(),
+        apiKey: apiKey /* .trim() */,
+      }),
     });
 
     const data = await res.json();
