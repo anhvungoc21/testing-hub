@@ -60,7 +60,7 @@ export default function Account() {
       body: JSON.stringify({
         email: session?.user.email,
         apiKeyName: apiKeyName.trim(),
-        apiKey: apiKey.trim(),
+        apiKey: apiKey /* .trim() */,
       }),
     });
 
@@ -111,7 +111,11 @@ export default function Account() {
                   <th className="p-2 border border-slate-600">API key</th>
                   <th className="flex align-baseline text-center gap-2 p-2 border border-slate-600">
                     <span>Fetch Data</span>
-                    <img className="w-1/6 h-1/6 pt-0.5 pb-0.5 cursor-pointer" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABoElEQVRIie2WzU4CMRDHfxrjTQ8kxC8kfiS+ihEVMcSzD2DAiy/ikagX0Ys3DT6Cr2DwIDHgyZt4MFFYPLQbSoPtFIjxwD+Z7G53pr9Od7YtjPVHmgjwTQN7wDawAqR0+yvwAlSAW6AxqsEtASWgBXQ81gZu9MCGUg74EABtawLZQaHHqAxCoWb2xVBobkioCRdnnsI9vXUgD8xo2weqDv8msCgBX3igiT4xCVQ1/xZ35oOmcVdvXvtlNKgBbOm2A0dci+7v11cFR3AHNbVY2dV126wn9sgETVrgjGtUqO/VsUYf6eu0J7anbxu85gm29Qkc6vtNj++662WckcS+UMsnwDzu4oqreyTgEx0zBzwK/J3gpwBwUsc8CP2rJmjKAteADdfIDL0J/WI9mw92cd0HdhaiiuvlMvLtr6wtEvh/41lAAM4FHZUN/yuBf8kHBbXx+6o7BPwOLEjAoLYy17YYaeA17qluA7tSaKyiBy6pg0IoNFaWsEXFnN6dQaGxksApqjIlWV4i+KYhx9sU3ePtKr3H2xpqDbjTz2P9H/0AJ/xJq47cBwgAAAAASUVORK5CYII=" title="Manually fetching data is only necessary if you want your data as soon as possible. Else, your data is fetched and updated automatically at 00:00 UTC daily after you enter the API key!"/>
+                    <img
+                      className="w-1/6 h-1/6 pt-0.5 pb-0.5 cursor-pointer"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABoElEQVRIie2WzU4CMRDHfxrjTQ8kxC8kfiS+ihEVMcSzD2DAiy/ikagX0Ys3DT6Cr2DwIDHgyZt4MFFYPLQbSoPtFIjxwD+Z7G53pr9Od7YtjPVHmgjwTQN7wDawAqR0+yvwAlSAW6AxqsEtASWgBXQ81gZu9MCGUg74EABtawLZQaHHqAxCoWb2xVBobkioCRdnnsI9vXUgD8xo2weqDv8msCgBX3igiT4xCVQ1/xZ35oOmcVdvXvtlNKgBbOm2A0dci+7v11cFR3AHNbVY2dV126wn9sgETVrgjGtUqO/VsUYf6eu0J7anbxu85gm29Qkc6vtNj++662WckcS+UMsnwDzu4oqreyTgEx0zBzwK/J3gpwBwUsc8CP2rJmjKAteADdfIDL0J/WI9mw92cd0HdhaiiuvlMvLtr6wtEvh/41lAAM4FHZUN/yuBf8kHBbXx+6o7BPwOLEjAoLYy17YYaeA17qluA7tSaKyiBy6pg0IoNFaWsEXFnN6dQaGxksApqjIlWV4i+KYhx9sU3ePtKr3H2xpqDbjTz2P9H/0AJ/xJq47cBwgAAAAASUVORK5CYII="
+                      title="Manually fetching data is only necessary if you want your data as soon as possible. Else, your data is fetched and updated automatically at 00:00 UTC daily after you enter the API key!"
+                    />
                   </th>
                   <th className="p-2 border border-slate-600">Remove</th>
                 </tr>
