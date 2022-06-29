@@ -10,7 +10,6 @@ export default async function handler(req, res) {
 
   const token = jwt.sign({ email: body.email }, process.env.JWT_SECRET);
   const checkExisting = await Users.findOne({ email: body.email });
-  console.log("Check existing", checkExisting);
   if (checkExisting) {
     res.status(200).json({ message: "Already registered" });
     return;

@@ -26,14 +26,10 @@ export default function Signup({ csrfToken }) {
       body: JSON.stringify({ firstName, lastName, email, password }),
     });
 
-    console.log(res);
-
     const data = await res.json();
     if (data.message) {
       setMessage(data.message);
     }
-    console.log(message);
-    console.log(email, password);
     if (data.message == "Registered successfully!") {
       let options = { redirect: false, email, password };
       const res = signIn("credentials", options);

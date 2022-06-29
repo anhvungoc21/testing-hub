@@ -20,7 +20,6 @@ export default function Login({ providers, csrfToken }) {
     e.preventDefault();
     let options = { redirect: false, email, password };
     const res = await signIn("credentials", options);
-    console.log(res);
     setMessage(null);
     if (res?.error) {
       setMessage(res.error);

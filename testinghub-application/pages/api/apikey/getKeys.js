@@ -15,7 +15,6 @@ export default async function handler(req, res) {
       apiKeysArr.push(apiKeyLabelObj);
     }
   }
-  // console.log(apiKeysArr);
   return res
     .status(200)
     .json({ data: apiKeysArr, apiKeyLimit: user?.apiKeyLimit });

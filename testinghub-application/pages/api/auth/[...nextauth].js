@@ -53,7 +53,6 @@ export default NextAuth({
         const email = credentials.email;
         const password = credentials.password;
         const user = await Users.findOne({ email });
-        console.log("User: " + user);
         if (!user) {
           throw new Error("You haven't registered yet");
         }

@@ -11,7 +11,6 @@ export default function Center() {
   const [okStatusState, setOkStatusState] = useState("");
 
   const { data: session } = useSession();
-  console.log(session);
 
   return (
     <div className="w-full h-full overflow-y-scroll scrollbar-hide">

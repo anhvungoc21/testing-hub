@@ -263,8 +263,6 @@ export default async function handler(req, res) {
       flowArr.push(subArr[0]);
     }
 
-    // console.log(arr_data);
-
     // const { same, diff } = find_intersection(result_c, result_r);
     let result_sig = [];
     let result_insig = [];
@@ -291,9 +289,6 @@ export default async function handler(req, res) {
       endDate
     );
 
-    console.log(countVarsQueryDict);
-    console.log(countVarsReceivedDict);
-
     for (let i = 0; i < arr_data.length; i++) {
       let flow = flowArr[i];
       let message_arr = Object.keys(skeleton[flow]);
@@ -301,7 +296,6 @@ export default async function handler(req, res) {
       //let message_arr = arr_data[i][1];
       for (let j = 0; j < message_arr.length; j++) {
         let message = message_arr[j];
-        console.log(message);
         let test = compare_variations(
           skeleton,
           flow,
@@ -312,7 +306,7 @@ export default async function handler(req, res) {
         if (!test) continue;
         //  test = metric_1, received_1, metric_2, received_2, winner
         if (test.winner == "building") {
-          let message_name = messageDict[message]
+          let message_name = messageDict[message];
           let test_obj = new TestObject(
             flow,
             message,
@@ -324,9 +318,8 @@ export default async function handler(req, res) {
             test.received2_count,
             test.winner,
             test.loser
-          )
-          console.log(test_obj);
-          result_building.push(test_obj)
+          );
+          result_building.push(test_obj);
         } else if (test.winner) {
           let message_name = messageDict[message];
           let test_obj = new TestObject(
@@ -341,9 +334,7 @@ export default async function handler(req, res) {
             test.received2_count,
             test.winner,
             test.loser
-            
           );
-          console.log(test_obj);
           result_sig.push(test_obj);
         } else {
           let message_name = messageDict[message];
@@ -361,7 +352,6 @@ export default async function handler(req, res) {
             test.loser
           );
           result_insig.push(test_obj);
-          console.log(test_obj);
         }
       }
     }
@@ -403,18 +393,10 @@ export default async function handler(req, res) {
 
     let main_metricID = await extract_metrics_ID(apiKey, metric_name);
     let received_metricID = await extract_metrics_ID(apiKey, "Received Email");
-    // console.log(
-    //   "Main metric: " + main_metricID,
-    //   "Received metric: :" + received_metricID
-    // );
 
     const tableEntry = await read_from_DDB(apiKey);
-    console.log(
-      "DYNAMODB ENTRY: -------------------------------------------------"
-    );
-    console.log(tableEntry);
     const skeleton = tableEntry.Item.data;
-    const messageDict = tableEntry.Item.messageDict
+    const messageDict = tableEntry.Item.messageDict;
 
     return await get_significant_tests(
       apiKey,

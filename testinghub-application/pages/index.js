@@ -10,7 +10,6 @@ export default function Index() {
   const { data: session } = useSession();
   useEffect(() => {
     if (session) {
-      console.log(session);
       (async () => {
         const res = await fetch("/api/addUserToDb", {
           method: "POST",
@@ -22,7 +21,6 @@ export default function Index() {
             name: session?.user.name,
           }),
         });
-        console.log(res);
       })();
     }
   }, [session]);
