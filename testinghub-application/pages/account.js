@@ -95,10 +95,10 @@ export default function Account() {
   }
 
   return (
-    <div className="h-screen overflow-scroll scrollbar-hide">
+    <div className="flex flex-col gap-10 bg-[#FEFAF3] h-screen overflow-scroll scrollbar-hide">
       <Header />
-      <main className="flex h-full w-full">
-        <div className="flex flex-col items-center bg-[#FEFAF3] w-full justify-center">
+      <main className="flex">
+        <div className="flex flex-col items-center w-full justify-center">
           <div>
             <table className="p-2 border-separate border-spacing border border-slate-500">
               <thead>
