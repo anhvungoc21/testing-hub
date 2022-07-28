@@ -360,10 +360,9 @@ export default async function handler(req, res) {
 
   function read_from_DDB(apiKey) {
     const awsConfig = {
-      accessKeyId: "AKIASKYT4SVEJTTVTRF2",
-      secretAccessKey: "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",
-      region: "us-east-1",
-      // "endpoint": "https://dynamodb.us-east-1.amazonaws.com",
+      accessKeyId: process.env.AWS_ACCESS_KEY,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_REGION,
     };
 
     AWS.config.update(awsConfig);

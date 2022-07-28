@@ -90,7 +90,6 @@ export default function TestSig({
       setTestSignificant(json.data[0]);
       setTestInsignificant(json.data[1]);
       setTestBuilding(json.data[2]);
-      console.log("Test ran");
       setTestRunning(false);
       setDataReceived(true);
       setOkStatusState("Data Retrieved!");
@@ -145,10 +144,6 @@ export default function TestSig({
   } else if (!dataReceived) {
     insigCards = undefined;
   } else {
-    testInsignificant.map((item) => {
-      console.log("Item: " + item);
-    });
-
     insigCards = testInsignificant.map((item, i) => (
       <div
         key={item.message_id}

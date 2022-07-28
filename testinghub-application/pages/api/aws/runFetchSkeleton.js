@@ -1,15 +1,15 @@
 import AWS from "aws-sdk";
 
 const awsConfig = {
-  accessKeyId: "AKIASKYT4SVEJTTVTRF2",
-  secretAccessKey: "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",
-  region: "us-east-1",
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
 };
 
 AWS.config.update(awsConfig);
 
 const lambda = new AWS.Lambda({
-  region: "us-east-1",
+  region: process.env.AWS_REGION,
 });
 
 const async_lambda_invoke = async (apiKey) => {
@@ -27,8 +27,10 @@ const async_lambda_invoke = async (apiKey) => {
 export default async function handler(req, res) {
   const privateApiKey = req.body.apiKey;
   try {
-    const awsRes = await async_lambda_invoke(privateApiKey)
-    return res.status(200).json({ message: "Data for your API Key is being fetched. Ready in 5-10 minutes!" });
+    const awsRes = await async_lambda_invoke(privateApiKey);
+    return res.status(200).json({
+      message: "Data for your API Key is being fetched. Ready in 5-10 minutes!",
+    });
   } catch (error) {
     console.log(error);
     throw error;
