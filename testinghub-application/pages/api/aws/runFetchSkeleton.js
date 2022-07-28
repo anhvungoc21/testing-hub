@@ -1,15 +1,15 @@
 import AWS from "aws-sdk";
 
 const awsConfig = {
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  accessKeyId: process.env.NEXT_AWS_ACCESS_KEY,
+  secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
+  region: process.env.NEXT_AWS_REGION,
 };
 
 AWS.config.update(awsConfig);
 
 const lambda = new AWS.Lambda({
-  region: process.env.AWS_REGION,
+  region: process.env.NEXT_AWS_REGION,
 });
 
 const async_lambda_invoke = async (apiKey) => {

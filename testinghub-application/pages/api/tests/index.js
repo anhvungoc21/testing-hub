@@ -360,9 +360,9 @@ export default async function handler(req, res) {
 
   function read_from_DDB(apiKey) {
     const awsConfig = {
-      accessKeyId: process.env.AWS_ACCESS_KEY,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: process.env.AWS_REGION,
+      accessKeyId: process.env.NEXT_AWS_ACCESS_KEY,
+      secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
+      region: process.env.NEXT_AWS_REGION,
     };
 
     AWS.config.update(awsConfig);
