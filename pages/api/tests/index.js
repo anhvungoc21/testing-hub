@@ -358,20 +358,21 @@ export default async function handler(req, res) {
     return { data: [result_sig, result_insig, result_building] };
   }
 
+  // TODO: Add these on Vercel
   function read_from_DDB(apiKey) {
     const awsConfig = {
-      accessKeyId: process.env.NEXT_AWS_ACCESS_KEY,
-      secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
-      region: process.env.NEXT_AWS_REGION,
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: "us-east-1",
     };
 
     AWS.config.update(awsConfig);
     const ddb = new AWS.DynamoDB.DocumentClient();
 
     const queryParams = {
-      TableName: "SkeletonByAPIKeys",
+      TableName: "TestingHub",
       Key: {
-        apiKeys: apiKey,
+        apiKey: apiKey,
       },
     };
 
