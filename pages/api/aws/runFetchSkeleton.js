@@ -9,7 +9,7 @@ const awsConfig = {
 AWS.config.update(awsConfig);
 
 const lambda = new AWS.Lambda({
-  region: process.env.NEXT_AWS_REGION,
+  region: "us-east-1",
 });
 
 // NOTE: Removed async here
